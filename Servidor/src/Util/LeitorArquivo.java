@@ -11,7 +11,7 @@ import static java.nio.file.Paths.get;
  */
 public class LeitorArquivo {
 
-    private static String pastaArquivos = "D:\\Projetos\\Aulas\\psw1\\PSW1_2017_1\\Servidor\\src\\arquivos\\";
+    private static String pastaArquivos = "C:\\Users\\rafael.soares\\Documents\\NetBeansProjects\\ServidorWEb\\PSW1_2017_1-master\\Servidor\\src\\arquivos\\";
 
     public static String lerArquivo(String nomeArquivo){
         try {

@@ -14,6 +14,9 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import servicos.Servico;
+import servicos.Somar;
+import servicos.Subtrair;
 
 /**
  *
@@ -29,7 +32,7 @@ public class Servidor {
         ServerSocket server = null;
         try {
             server = new ServerSocket( 1234 );  //Cria um novo Socket na porta informada
-         //   while(true) {
+           while(true) {
          	Socket socket = server.accept();  //Interrompe a execu��o esperando um cliente
            
                  //Prepara as classes para leitura dos dados
@@ -45,6 +48,12 @@ public class Servidor {
             String lido = "";
             lido = inputReader.readLine();
             System.out.println(lido); //Exibe o que foi recebido na tela
+            
+            String recurso = lido.split(" ")[1];
+            
+            System.out.println("Recurso: " + recurso);
+            
+            
 
             System.out.println("----------------------------------");
             System.out.println("Fim do conteudo enviado pelo cliente.");
@@ -55,7 +64,23 @@ public class Servidor {
                     new PrintWriter(
                             new OutputStreamWriter( outputStream ));
 
-            outputWriter.println("OH O GAAAAAS");
+            
+            
+            if(recurso.endsWith("html")){
+                outputWriter.println(Util.LeitorArquivo.lerArquivo(recurso));
+            }
+            else {
+                Servico serv = null;
+                if(recurso.contains("somar")){
+                    serv = new Somar();
+                }
+                if(recurso.contains("subtrair")){
+                    serv = new Subtrair();
+                }
+                outputWriter.println("<h1> resultado: " + serv.executar(recurso) + "</h1>");
+                
+            }
+            
             outputWriter.println(); // The empty line
 
             
@@ -70,7 +95,7 @@ public class Servidor {
                 
                 
                 socket.close();
-           // }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
