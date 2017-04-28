@@ -6,20 +6,17 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
  * @author Rafael.Soares
  */
-public class criaProduto extends HttpServlet {
+public class buscaProduto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,46 +31,31 @@ public class criaProduto extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-          
             
-           
-           
+            int id = Integer.parseInt(request.getParameter("id"));
             
             
+            Session sessao = HibernateUtil.
+                            getSessionFactory().
+                            openSession();
             
-            Produto prod = new Produto();
-            prod.setNome("Produto_" + new Random().nextLong());
-            prod.setFabricante("Pirelli");
-            prod.setPreco(400);
-
-            Transaction tx = null;
-            try{
-                Session sessao = HibernateUtil.
-                                    getSessionFactory().
-                                    openSession();
-
-                 tx = sessao.beginTransaction();
-
-                sessao.save(prod);
-                sessao.flush();
-
-                tx.commit();
-                sessao.close();
-            } catch (Exception ex){
-                ex.printStackTrace();
-                tx.rollback();
+            Produto p = (Produto) sessao.get(Produto.class, id);
+            
+            
+            sessao.close();
+            
+            out.println("Produto recuperado: <br/>");
+            if(p != null){
+                out.println(p.getNome());
+                out.println("<br/>");
+                out.println(p.getPreco());
+                out.println("<br/>");
+                out.println(p.getIdentificador());
+            } else {
+                out.println("nenhum prod encontrado");
             }
             
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet criaProduto</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet criaProduto at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
         }
     }
 

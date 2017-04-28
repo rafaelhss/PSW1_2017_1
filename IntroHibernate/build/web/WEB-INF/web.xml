@@ -4,9 +4,17 @@
         <servlet-name>criaProduto</servlet-name>
         <servlet-class>criaProduto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>buscaProduto</servlet-name>
+        <servlet-class>buscaProduto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>criaProduto</servlet-name>
         <url-pattern>/criaProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buscaProduto</servlet-name>
+        <url-pattern>/buscaProduto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
