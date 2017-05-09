@@ -39,7 +39,8 @@ public class buscarProfessor extends HttpServlet {
             Professor prof = (Professor) sessao.get(Professor.class, nome);
             
             if(prof != null) {
-                out.println("Professor encontrado: " + prof.getNome() + " "+ prof.getSobrenome());
+                out.println("<a href=\"formEditar?nome="+ nome + "\">editar</a>  Professor encontrado: " + prof.getNome() + " "+ prof.getSobrenome()) ;
+                
             } else {
                 out.println("Nao encontrei professor com nome: " + nome);
             }

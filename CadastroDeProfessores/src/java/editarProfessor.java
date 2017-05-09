@@ -42,7 +42,7 @@ public class editarProfessor extends HttpServlet {
             
             Transaction tx = null;
             try{
-                   tx = sessao.beginTransaction();
+                tx = sessao.beginTransaction();
                 
                 sessao.save(prof);
                 sessao.flush();

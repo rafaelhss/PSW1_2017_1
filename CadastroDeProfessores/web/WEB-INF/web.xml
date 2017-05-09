@@ -16,6 +16,14 @@
         <servlet-name>editarProfessor</servlet-name>
         <servlet-class>editarProfessor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>formEditar</servlet-name>
+        <servlet-class>formEditar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>consultarProfessor</servlet-name>
+        <servlet-class>consultarProfessor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>cadastrarProfessor</servlet-name>
         <url-pattern>/cadastrarProfessor</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>editarProfessor</servlet-name>
         <url-pattern>/editarProfessor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>formEditar</servlet-name>
+        <url-pattern>/formEditar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>consultarProfessor</servlet-name>
+        <url-pattern>/consultarProfessor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
